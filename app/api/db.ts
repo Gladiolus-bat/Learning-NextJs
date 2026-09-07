@@ -1,8 +1,12 @@
-import "dotenv/config";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 export async function connectToDb() {
-    const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.xhaqtv7.mongodb.net/?appName=Cluster0`;
+    const uri = process.env.MONGODB_URI;
+
+    if (!uri) {
+        throw new Error("MONGODB_URI is not defined");
+    }
+    
 
     const client = new MongoClient(uri, {
         serverApi: {
