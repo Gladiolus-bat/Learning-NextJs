@@ -1,6 +1,13 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient, Db, ServerApiVersion } from "mongodb";
+
+let cachedClient: MongoClient | null = null;
+let cachedDb: Db | null = null;
 
 export async function connectToDb() {
+    if (cachedClient && cachedDb) {
+        return {client: cachedClient, db: cachedDb};
+    }
+    
     const uri = process.env.MONGODB_URI;
 
     if (!uri) {
@@ -16,9 +23,10 @@ export async function connectToDb() {
         },
     });
 
-    try {
         await client.connect();
-    } finally {
-        await client.close();
-    }
+
+        cachedClient = client;
+        cachedDb = client.db('Learning-NextJs-Ecommerce');
+    
+        return {client, db: client.db('Learning-NextJs-Ecommerce')}
 }
