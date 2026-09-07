@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 export async function connectToDb() {
