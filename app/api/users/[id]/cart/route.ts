@@ -27,7 +27,7 @@ export async function GET(request: NextRequest, {params}: {params: Params}) {
         });
     }
 
-    const cartIds = userCart.productIds;
+    const cartIds = userCart.cartIds;
     const cartProducts = await db.collection('products').find({id: {$in: cartIds}}).toArray();
 
     return new Response(JSON.stringify(cartProducts), {
