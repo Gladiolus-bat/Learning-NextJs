@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from "./product-data"
+import { Product } from "./product-data";
 
 export default function ProductsList({ products, initialCartProducts }: { products: Product[], initialCartProducts: Product[] }) {
-    const [cartProducts, setCartProducts] = useState(initialCartProducts)
+    const [cartProducts, setCartProducts] = useState(initialCartProducts);
 
     async function addToCart(productId: string) {
         const response = await fetch(process.env.NEXT_PUBLIC_SITE_URL + '/api/users/2/cart', {
@@ -65,8 +65,7 @@ export default function ProductsList({ products, initialCartProducts }: { produc
                         }}>Add to Cart</button>
                     )}
                 </Link>
-            ))
-            }
-        </div >
+            ))}
+        </div>
     );
 }
