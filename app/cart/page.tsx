@@ -9,5 +9,5 @@ export default async function CartPage() {
 
     return (
         <ShoppingCartList initialCartProducts={cartProducts} />
-    )
+    );
 }

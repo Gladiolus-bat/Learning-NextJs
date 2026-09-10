@@ -5,15 +5,14 @@ let cachedDb: Db | null = null;
 
 export async function connectToDb() {
     if (cachedClient && cachedDb) {
-        return {client: cachedClient, db: cachedDb};
+        return { client: cachedClient, db: cachedDb };
     }
-    
+
     const uri = process.env.MONGODB_URI;
 
     if (!uri) {
         throw new Error("MONGODB_URI is not defined");
     }
-    
 
     const client = new MongoClient(uri, {
         serverApi: {
@@ -23,10 +22,10 @@ export async function connectToDb() {
         },
     });
 
-        await client.connect();
+    await client.connect();
 
-        cachedClient = client;
-        cachedDb = client.db('Learning-NextJs-Ecommerce');
-    
-        return {client, db: client.db('Learning-NextJs-Ecommerce')}
+    cachedClient = client;
+    cachedDb = client.db("Learning-NextJs-Ecommerce");
+
+    return { client, db: client.db("Learning-NextJs-Ecommerce") };
 }

@@ -5,7 +5,7 @@ import { Product } from '../product-data';
 import Link from 'next/link';
 
 export default function ShoppingCartList({initialCartProducts} : {initialCartProducts: Product[]}) {
-    const [cartProducts] = useState(initialCartProducts);
+    const [cartProducts, setCartProducts] = useState(initialCartProducts);
 
     return (
         <div className='container mx-auto p-8'>

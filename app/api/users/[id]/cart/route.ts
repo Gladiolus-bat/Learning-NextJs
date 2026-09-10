@@ -39,7 +39,7 @@ export async function GET(request: NextRequest, {params}: {params: Params}) {
 }
 
 type CartBody = {
-    productId: string
+    productId: string;
 }
 
 export async function POST(request: NextRequest, {params}: {params: Params}) {
